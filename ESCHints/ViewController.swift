@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import CloudKit
+
+public let HintType = "Hint"
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    let publicDB = CKContainer.default().publicCloudDatabase
+
     var hints = [String]()
 
     @IBOutlet weak var questionTextView: UITextView!
@@ -39,6 +44,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         questionTextView.layer.cornerRadius = 10
         questionTextView.layer.masksToBounds = true
         questionTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    }
+    
+    func fetchAllHints() {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: HintType, predicate: predicate)
+
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.delegate?.errorUpdating(error as NSError)
+                    print("Cloud Query Error - Fetch Establishments: \(error)")
+                }
+                return
+            }
+            
+            self.hints = records?.map(Lobby.init)
+            
+            DispatchQueue.main.async {
+                completion(self.cachedLobbies, error)
+            }
+        }
+        
+        publicDB.perform(query, inZoneWith: nil) { [unowned self] results, error in
+
+            self.items.removeAll(keepingCapacity: true)
+            results?.forEach({ (record: CKRecord) in
+                self.items.append(Establishment(record: record,
+                                                database: self.publicDB))
+            })
+            DispatchQueue.main.async {
+                self.delegate?.modelUpdated()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
