@@ -14,6 +14,7 @@
 		6B1992E22088755D0080AA0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B1992E02088755D0080AA0F /* LaunchScreen.storyboard */; };
 		6B1992EA2088B29C0080AA0F /* HintTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1992E92088B29C0080AA0F /* HintTableViewCell.swift */; };
 		6B4E5A3C2088C56B009EF8E4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4E5A3B2088C56B009EF8E4 /* CloudKit.framework */; };
+		6B4E5A3E2088CB26009EF8E4 /* Hint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4E5A3D2088CB26009EF8E4 /* Hint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,7 @@
 		6B1992E92088B29C0080AA0F /* HintTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTableViewCell.swift; sourceTree = "<group>"; };
 		6B1992F02088C2810080AA0F /* ESCHints.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ESCHints.entitlements; sourceTree = "<group>"; };
 		6B4E5A3B2088C56B009EF8E4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		6B4E5A3D2088CB26009EF8E4 /* Hint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				6B1992E02088755D0080AA0F /* LaunchScreen.storyboard */,
 				6B1992E32088755D0080AA0F /* Info.plist */,
 				6B1992E92088B29C0080AA0F /* HintTableViewCell.swift */,
+				6B4E5A3D2088CB26009EF8E4 /* Hint.swift */,
 			);
 			path = ESCHints;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B4E5A3E2088CB26009EF8E4 /* Hint.swift in Sources */,
 				6B1992DA2088755C0080AA0F /* ViewController.swift in Sources */,
 				6B1992EA2088B29C0080AA0F /* HintTableViewCell.swift in Sources */,
 				6B1992D82088755C0080AA0F /* AppDelegate.swift in Sources */,
