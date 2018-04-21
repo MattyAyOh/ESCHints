@@ -46,6 +46,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         questionTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
     
+    func saveHint() {
+        UserDefaults().set("sepia", forKey: "room")
+        let newHint:Hint = Hint()
+        newHint.hintString = "Programmatic1"
+        guard let record = newHint.record() else {
+            return
+        }
+        publicDB.save(record) { (savedRecord, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    print("Cloud Query Error - Save Hint: \(error)")
+                }
+                return
+            }
+            print("Saved Successfully")
+        }
+    }
+    
     func fetchAllHints() {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: HintType, predicate: predicate)
