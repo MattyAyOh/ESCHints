@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hints = ["test","totally", "rad", "receipt"]
+        fetchAllHints()
         hintTableView.tableFooterView = UIView()
         hintTableView.layer.cornerRadius = 10
         hintTableView.layer.masksToBounds = true
