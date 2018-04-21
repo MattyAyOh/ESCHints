@@ -12,7 +12,7 @@ import CloudKit
 public let HintType = "Hint"
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let publicDB = CKContainer.default().publicCloudDatabase
+    let publicDB = CKContainer.init(identifier: "iCloud.esc.GameMaster").publicCloudDatabase
 
     var hints = [String]()
 
