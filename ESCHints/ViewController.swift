@@ -53,28 +53,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
                 DispatchQueue.main.async {
-                    self.delegate?.errorUpdating(error as NSError)
-                    print("Cloud Query Error - Fetch Establishments: \(error)")
+                    print("Cloud Query Error - Fetch Hints: \(error)")
                 }
                 return
             }
             
-            self.hints = records?.map(Lobby.init)
-            
-            DispatchQueue.main.async {
-                completion(self.cachedLobbies, error)
-            }
-        }
-        
-        publicDB.perform(query, inZoneWith: nil) { [unowned self] results, error in
-
-            self.items.removeAll(keepingCapacity: true)
-            results?.forEach({ (record: CKRecord) in
-                self.items.append(Establishment(record: record,
-                                                database: self.publicDB))
-            })
-            DispatchQueue.main.async {
-                self.delegate?.modelUpdated()
+            if let allHints = records?.map(Hint.init) {
+                self.hints = allHints.map({ (hint) -> String in
+                    return hint.hintString ?? ""
+                })
+                DispatchQueue.main.async {
+                    self.hintTableView.reloadData()
+                }
             }
         }
     }
