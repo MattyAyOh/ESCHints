@@ -15,7 +15,7 @@ class Hint: NSObject {
     var hintString: String?
     
     override init() {
-        if let roomString = UserDefaults.value(forKey: "room") as? String {
+        if let roomString = UserDefaults().object(forKey: "room") as? String {
             room = roomString
         } else {
             print("Error: No Room Set")
