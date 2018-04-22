@@ -40,10 +40,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        publicDB.add(operation)
 //    }
     
-    var hints = [String]()
+    var hints = [Hint]()
 
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var hintTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func sendButtonPressed(_ sender: Any) {
         let questionString = questionTextView.textStorage.string
@@ -56,12 +57,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func clearHistoryPressed(_ sender: Any) {
+        for hint in hints {
+            if let record = hint.record() {
+                publicDB.delete(withRecordID: record.recordID) { (recordID, error) in
+                    if let error = error {
+                        DispatchQueue.main.async {
+                            print("Cloud Query Error - Delete Hint: \(error)")
+                        }
+                    }
+                }
+            }
+        }
         hints.removeAll()
         hintTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hintTableView.isHidden = true
+        activityIndicator.isHidden = false
         fetchAllHints()
         hintTableView.tableFooterView = UIView()
         hintTableView.layer.cornerRadius = 10
@@ -103,10 +117,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             
             if let allHints = records?.map(Hint.init) {
-                self.hints = allHints.map({ (hint) -> String in
-                    return hint.hintString ?? ""
-                })
+                self.hints = allHints
                 DispatchQueue.main.async {
+                    self.activityIndicator.isHidden = true
+                    self.hintTableView.isHidden = false
                     self.hintTableView.reloadData()
                 }
             }
@@ -125,7 +139,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = hintTableView.dequeueReusableCell(withIdentifier: "hintCell", for: indexPath)
         if let hintCell = cell as? HintTableViewCell {
-            hintCell.hintTextView.text = hints[indexPath.row]
+            hintCell.hintTextView.text = hints[indexPath.row].hintString
         }
         return cell
         
