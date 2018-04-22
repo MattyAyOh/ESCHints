@@ -13,7 +13,33 @@ public let HintType = "Hint"
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let publicDB = CKContainer.init(identifier: "iCloud.esc.GameMaster").publicCloudDatabase
+//    var subscriptionIslocallyCached = false
+    
 
+//    func loginToICloud() {
+//        if (subscriptionIslocallyCached) {return}
+//
+//        let sub = CKDatabaseSubscription(subscriptionID: "shared-changes")
+//
+//        let info = CKNotificationInfo()
+//        info.shouldSendContentAvailable = true
+//
+//        sub.notificationInfo = info
+//
+//        let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [sub], subscriptionIDsToDelete: [])
+//        operation.modifySubscriptionsCompletionBlock = { savedSubscriptions, deletedSubscriptionIDs, error in
+//            if error != nil {
+//                print (error ?? "Erorr!")
+//            } else {
+//                self.subscriptionIslocallyCached = true
+//                UIApplication.shared.registerForRemoteNotifications()
+//            }
+//        }
+//
+//        operation.qualityOfService = .utility
+//        publicDB.add(operation)
+//    }
+    
     var hints = [String]()
 
     @IBOutlet weak var questionTextView: UITextView!
