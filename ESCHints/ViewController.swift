@@ -92,7 +92,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func saveHint() {
         UserDefaults().set("sepia", forKey: "room")
         let newHint:Hint = Hint()
-        newHint.hintString = "Programmatic1"
+        newHint.hintString = "Programmatic Hint"
         guard let record = newHint.record() else {
             return
         }
