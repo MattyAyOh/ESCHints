@@ -64,14 +64,14 @@
                                     <action selector="sendButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Usk-zF-Hia"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXc-Fj-MLw">
-                                <rect key="frame" x="16" y="286" width="36" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hints:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXc-Fj-MLw">
+                                <rect key="frame" x="16" y="286" width="44.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need a Hint?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocO-WO-BPc">
-                                <rect key="frame" x="16" y="60" width="98.5" height="40"/>
+                                <rect key="frame" x="16" y="79.5" width="98.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -147,7 +147,6 @@
                             <constraint firstItem="GvK-Ff-gGs" firstAttribute="top" secondItem="sUJ-3a-UNh" secondAttribute="bottom" constant="8" id="HpO-bG-1dS"/>
                             <constraint firstItem="ef8-R8-8QQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="IEF-b4-Zng"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ef8-R8-8QQ" secondAttribute="trailing" constant="16" id="Ozl-WM-ahk"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CXc-Fj-MLw" secondAttribute="trailing" constant="319" id="Ruz-yP-L99"/>
                             <constraint firstItem="ocO-WO-BPc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Uq7-NU-ztO"/>
                             <constraint firstItem="sUJ-3a-UNh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="V5j-aV-Xbm"/>
                             <constraint firstItem="QnG-uC-iUt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="box-2H-a9g"/>
@@ -155,12 +154,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pq7-ME-COp" secondAttribute="trailing" constant="16" id="gEi-rM-uvO"/>
                             <constraint firstItem="ef8-R8-8QQ" firstAttribute="top" secondItem="Pq7-ME-COp" secondAttribute="bottom" constant="8" id="kkv-B0-d5T"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ocO-WO-BPc" secondAttribute="trailing" constant="253" id="n5y-R5-aw5"/>
-                            <constraint firstItem="ocO-WO-BPc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="npR-Ne-RhK"/>
                             <constraint firstItem="Pq7-ME-COp" firstAttribute="top" secondItem="CXc-Fj-MLw" secondAttribute="bottom" constant="8" id="ntG-2K-41P"/>
                             <constraint firstItem="sUJ-3a-UNh" firstAttribute="top" secondItem="ocO-WO-BPc" secondAttribute="bottom" constant="8" id="nwz-k7-ajZ"/>
                             <constraint firstItem="Pq7-ME-COp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="tfn-RZ-42r"/>
                             <constraint firstItem="48i-Xt-z8c" firstAttribute="centerY" secondItem="ef8-R8-8QQ" secondAttribute="centerY" id="uO9-3v-XZT"/>
                             <constraint firstItem="QnG-uC-iUt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="v8a-nv-3rg"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CXc-Fj-MLw" secondAttribute="trailing" constant="20" symbolic="YES" id="x7J-zy-Ml4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
