@@ -150,6 +150,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
         
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            if let record = hints[indexPath.row].record() {
+                publicDB.delete(withRecordID: record.recordID) { (recordID, error) in
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            print("Cloud Query Error - Delete Hint: \(error)")
+                        }
+                        self.hints.remove(at: indexPath.row)
+                        self.hintTableView.deleteRows(at: [indexPath], with: .fade)
+                        self.hintTableView.reloadData()
+                    }
+                }
+            }
+
+            
+        }
+    }
 
 
 }
