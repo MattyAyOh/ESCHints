@@ -9,8 +9,6 @@
 import UIKit
 import CloudKit
 
-public let HintType = "Hint"
-
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     let publicDB = CKContainer.init(identifier: "iCloud.esc.GameMaster").publicCloudDatabase
 //    var subscriptionIslocallyCached = false
