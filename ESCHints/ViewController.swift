@@ -11,7 +11,7 @@ import CloudKit
 
 public let HintType = "Hint"
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     let publicDB = CKContainer.init(identifier: "iCloud.esc.GameMaster").publicCloudDatabase
 //    var subscriptionIslocallyCached = false
     
@@ -133,10 +133,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: TextView Delegate
+    
+    func textViewDidBeginEditing(_ textView: UITextView)
+    {
+        if (textView.text == "Ask Away...")
+        {
+            textView.text = ""
+            textView.textColor = .black
+        }
+        textView.becomeFirstResponder()
     }
+    
+    func textViewDidEndEditing(_ textView: UITextView)
+    {
+        if (textView.text == "")
+        {
+            textView.text = "Ask Away..."
+            textView.textColor = .lightGray
+        }
+        textView.resignFirstResponder()
+    }
+    
+    // MARK: TableView Delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return hints.count
