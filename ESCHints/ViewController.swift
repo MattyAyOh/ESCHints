@@ -53,7 +53,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
-        print(questionString) // Need to send to iCloud
+        let newQuestion:Question = Question()
+        newQuestion.questionString = "Programmatic Question"
+        guard let record = newQuestion.record() else {
+            return
+        }
+        publicDB.save(record) { (savedRecord, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    print("Cloud Query Error - Save Question: \(error)")
+                }
+                return
+            }
+            print("Saved Successfully")
+        }
+        
     }
     
     @IBAction func refreshButtonPressed(_ sender: Any) {
@@ -90,7 +104,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func saveHint() {
-        UserDefaults().set("sepia", forKey: "room")
         let newHint:Hint = Hint()
         newHint.hintString = "Programmatic Hint"
         guard let record = newHint.record() else {
