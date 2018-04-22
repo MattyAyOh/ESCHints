@@ -56,6 +56,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print(questionString) // Need to send to iCloud
     }
     
+    @IBAction func refreshButtonPressed(_ sender: Any) {
+        fetchAllHints()
+    }
+    
     @IBAction func clearHistoryPressed(_ sender: Any) {
         for hint in hints {
             if let record = hint.record() {
@@ -74,8 +78,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hintTableView.isHidden = true
-        activityIndicator.isHidden = false
+
         fetchAllHints()
         hintTableView.tableFooterView = UIView()
         hintTableView.layer.cornerRadius = 10
@@ -105,6 +108,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func fetchAllHints() {
+        hintTableView.isHidden = true
+        activityIndicator.isHidden = false
+        
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: HintType, predicate: predicate)
 
