@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let publicDB = CKContainer.init(identifier: "iCloud.esc.GameMaster").publicCloudDatabase
+        
         let notificationInfo = CKNotificationInfo()
         notificationInfo.alertBody = "👌🏻👌🏻"
         notificationInfo.shouldBadge = false
@@ -40,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let subscription = CKQuerySubscription(recordType: "Hint", predicate: predicate, options: .firesOnRecordCreation)
             subscription.notificationInfo = notificationInfo
             
-            let publicDB = CKContainer.init(identifier: "iCloud.esc.GameMaster").publicCloudDatabase
             publicDB.save(subscription, completionHandler: { subscription, error in
                 if error == nil {
                     print("success")

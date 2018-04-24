@@ -25,6 +25,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.questionTextView.text = ""
             self.questionTextView.becomeFirstResponder()
             self.questionTextView.resignFirstResponder()
+            
+            publicDB.fetchAllSubscriptions { (subscriptions, error) in
+                if let unwrappedSubscriptions = subscriptions {
+                    for subscription in unwrappedSubscriptions {
+                        self.publicDB.delete(withSubscriptionID: subscription.subscriptionID, completionHandler: { (subID, error) in })
+                    }
+                }
+            }
             return
         }
         
