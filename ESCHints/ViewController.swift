@@ -29,7 +29,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             publicDB.fetchAllSubscriptions { (subscriptions, error) in
                 if let unwrappedSubscriptions = subscriptions {
                     for subscription in unwrappedSubscriptions {
-                        self.publicDB.delete(withSubscriptionID: subscription.subscriptionID, completionHandler: { (subID, error) in })
+                        if subscription.notificationInfo?.alertBody == "👌🏻👌🏻" {
+                            self.publicDB.delete(withSubscriptionID: subscription.subscriptionID, completionHandler: { (subID, error) in })
+                        }
                     }
                 }
             }
