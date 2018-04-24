@@ -22,22 +22,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let questionString = questionTextView.textStorage.string
         if questionString.contains("SETROOM:") {
             UserDefaults().set(questionString.replacingOccurrences(of: "SETROOM:", with: "").trimmingCharacters(in: .whitespacesAndNewlines), forKey: "room")
+            self.questionTextView.text = ""
+            self.questionTextView.becomeFirstResponder()
+            self.questionTextView.resignFirstResponder()
             return
         }
         
         let newQuestion:Question = Question()
-        newQuestion.questionString = "Programmatic Question"
+        newQuestion.questionString = questionTextView.text
         guard let record = newQuestion.record() else {
             return
         }
         publicDB.save(record) { (savedRecord, error) in
-            if let error = error {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let error = error {
                     print("Cloud Query Error - Save Question: \(error)")
                 }
-                return
+                self.questionTextView.text = ""
+                self.questionTextView.becomeFirstResponder()
+                self.questionTextView.resignFirstResponder()
             }
-            print("Saved Successfully")
         }
         
     }
