@@ -11,32 +11,6 @@ import CloudKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     let publicDB = CKContainer.init(identifier: "iCloud.esc.GameMaster").publicCloudDatabase
-//    var subscriptionIslocallyCached = false
-    
-
-//    func loginToICloud() {
-//        if (subscriptionIslocallyCached) {return}
-//
-//        let sub = CKDatabaseSubscription(subscriptionID: "shared-changes")
-//
-//        let info = CKNotificationInfo()
-//        info.shouldSendContentAvailable = true
-//
-//        sub.notificationInfo = info
-//
-//        let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [sub], subscriptionIDsToDelete: [])
-//        operation.modifySubscriptionsCompletionBlock = { savedSubscriptions, deletedSubscriptionIDs, error in
-//            if error != nil {
-//                print (error ?? "Erorr!")
-//            } else {
-//                self.subscriptionIslocallyCached = true
-//                UIApplication.shared.registerForRemoteNotifications()
-//            }
-//        }
-//
-//        operation.qualityOfService = .utility
-//        publicDB.add(operation)
-//    }
     
     var hints = [Hint]()
 
@@ -122,7 +96,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         hintTableView.isHidden = true
         activityIndicator.isHidden = false
         
-        let predicate = NSPredicate(value: true)
+        var currentRoom = "sepia"
+        if let defaultsRoom = UserDefaults().value(forKey: "room") as? String {
+            currentRoom = defaultsRoom
+        }
+        let predicate = NSPredicate(format: "room = %@", currentRoom)
         let query = CKQuery(recordType: HintType, predicate: predicate)
 
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
