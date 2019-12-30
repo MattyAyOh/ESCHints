@@ -20,6 +20,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func sendButtonPressed(_ sender: Any) {
         let questionString = questionTextView.textStorage.string
+        //options are "sepia", "crimson", or "platinum"
         if questionString.contains("SETROOM:") {
             UserDefaults().set(questionString.replacingOccurrences(of: "SETROOM:", with: "").trimmingCharacters(in: .whitespacesAndNewlines), forKey: "room")
             self.questionTextView.text = ""
